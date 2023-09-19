@@ -51,7 +51,7 @@ jobs:
         path: ./build
 
     - name: Deploy to master
-      uses: peaceiris/actions-master@v3
+      uses: DarshuM/master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
