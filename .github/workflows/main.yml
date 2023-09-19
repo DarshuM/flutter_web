@@ -51,7 +51,7 @@ jobs:
         path: ./build
 
     - name: Deploy to dm_dev
-      uses: peaceiris/actions-dm_dev@v3
+      uses: DarshuM/actions-dm_dev@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
