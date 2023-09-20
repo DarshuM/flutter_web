@@ -105,9 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            DynamicSelectedTextWidget(
+                color: Colors.amber,
+                fontWeight: FontWeight.w800,
+                textAlign: TextAlign.center,
+                fontSize: 16,
+                primaryText: "Home Services, on demand"),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -120,6 +123,47 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class DynamicSelectedTextWidget extends StatelessWidget {
+  DynamicSelectedTextWidget(
+      {super.key,
+        required this.primaryText,
+        this.maxLine,
+        this.color,
+        this.fontSize,
+        this.fontWeight = FontWeight.normal,
+        this.textAlign});
+
+  final String primaryText;
+  Color? color;
+  double? fontSize;
+  FontWeight fontWeight;
+  TextAlign? textAlign;
+  int? maxLine;
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectableText(
+      primaryText,
+      textAlign: textAlign ??
+          DefaultTextStyle.of(context).textAlign ??
+          TextAlign.start,
+      style: TextStyle(
+        height: 1.2,
+        color: color ?? Colors.white,
+        fontSize: fontSize ?? 16,
+        fontWeight: fontWeight,
+      ),
+      maxLines: maxLine ?? DefaultTextStyle.of(context).maxLines,
+      onTap: () => print('Tapped'),
+      showCursor: true,
+      cursorWidth: 2,
+      cursorColor: Colors.red,
+      cursorRadius: Radius.circular(5),
     );
   }
 }
